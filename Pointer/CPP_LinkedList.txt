@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+struct node{
+    int data;
+    node *next;
+};
+
+void printList(node *n){
+    while(n!=NULL){
+        cout<<n->data<<endl;
+        n=n->next;
+    }
+}
+
+int main()
+{
+    cout<<"Hello World"<<endl;
+    
+    // node *head = new node();
+    // node *second = new node();
+    // node *third = new node();
+    
+    // head->data= 1;
+    // head->next= second;
+    
+    // second-> data = 10;
+    // second-> next = third;
+    
+    // third-> data = 100;
+    // third-> next=NULL;
+    
+    // printList(head);
+    
+    node *arr[5];
+    for (int i=0; i < 5; i++)
+    {   
+       arr[i] = new node();
+    }
+    
+    arr[0]->data=0;
+    arr[0]->next = arr[1];
+    
+    arr[1]->data=1;
+    arr[1]->next = arr[2];
+    
+    arr[2]->data=2;
+    arr[2]->next = arr[3];
+    
+    arr[3]->data=3;
+    arr[3]->next = arr[4];
+    
+    arr[4]->data=4;
+    arr[4]->next = NULL;
+    
+    printList(arr[0]);
+    
+    return 0;
+}
+
+
+Output
+
+Hello World
+0
+1
+2
+3
+4
+
