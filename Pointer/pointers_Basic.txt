@@ -1,0 +1,44 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout<<"Hello World"<<endl;
+
+    int x= 20;
+    int *ptr = &x;
+    
+    cout<<*ptr<<endl;
+    cout<<ptr<<endl;
+    
+    cout<<"*************************";
+    int **ptr1 = &ptr;
+    
+    cout<<ptr1<<endl;
+    cout<<*ptr1<<endl;
+    cout<<**ptr1<<endl;
+    
+    cout<<"*************************";
+    int ***ptr2= &ptr1;
+    
+    cout<<ptr2<<endl;
+    cout<<*ptr2<<endl;
+    cout<<**ptr2<<endl;
+    cout<<***ptr2<<endl;
+    
+    return 0;
+}
+
+
+Output:
+Hello World
+20
+0x7ffc20657af4
+*************************0x7ffc20657af8
+0x7ffc20657af4
+20
+*************************0x7ffc20657b00
+0x7ffc20657af8
+0x7ffc20657af4
+20
