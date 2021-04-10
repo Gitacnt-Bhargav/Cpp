@@ -1,0 +1,130 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+struct node{
+    int data;
+    node *next;
+};
+
+void printList(node *n){
+    int count = 0;
+    while(n!=NULL){
+        cout<<n->data<<endl;
+        n= n->next;
+        count++;
+    }
+    cout<<"Count : "<<count<<endl;
+}
+
+// node *push(node *head, int data){
+//     node *newNode = new node();
+//     newNode->data = data;
+//     newNode->next = head;
+//     head = newNode;
+//     return head;
+// }
+
+void *push(node **head_ref, int data){
+    node *newNode = new node();
+    newNode->data = data;
+    newNode->next = *head_ref;
+    *head_ref = newNode;
+}
+
+void *insertAfter(node *prevNode, int data){
+    node *newNode = new node();
+    newNode->data = data;
+    newNode->next = prevNode->next;
+    prevNode->next= newNode;
+}
+
+void append(node **head_ref, int data){
+    node *newNode = new node();
+    newNode->data = data;
+    newNode->next = NULL;
+    
+    node *lastNode=*head_ref;
+    //here, if the list is empty
+    if(*head_ref==NULL){
+        *head_ref= newNode;
+        return;
+    }
+    
+    //here, if the list is not empty
+    while(lastNode->next!=NULL){
+        lastNode=lastNode->next;
+    }
+    lastNode->next= newNode;
+    return;
+}
+
+void deleteNode(node **head_ref, int key){
+    node *prevNode, *temp;
+    
+    temp = *head_ref;
+    if(temp!=NULL && temp->data == key){
+        *head_ref=temp->next;
+        free(temp);
+        return;
+    }
+    
+    while(temp!=NULL && temp->data!=key){
+        prevNode = temp;
+        temp = temp->next;
+    }
+    
+    //if key is not found
+    if(temp==NULL) return;
+    
+    //but if key is found, then
+    prevNode->next= temp->next;
+    free(temp);
+    return;
+}
+
+int main()
+{
+    cout<<"Hello World"<<endl;
+    
+    node *head = NULL;
+    // head = push(head, 5);
+    // head = push(head, 4);
+
+    push(&head,5);
+    push(&head,4);
+    push(&head,20);
+    
+    insertAfter(head->next,100); //100 added after head->next which is head has 5 and head->next has 4, so gets added after 4
+    append(&head,1);
+    printList(head);
+    
+    deleteNode(&head, 100);
+    
+    printList(head);
+    return 0;
+}
+
+************************************************************
+OUTPUT
+************************************************************
+Hello World
+20
+4
+100
+5
+1
+Count : 5
+20
+4
+5
+1
+Count : 4
